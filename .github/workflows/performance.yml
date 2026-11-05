@@ -1,0 +1,25 @@
+name: performance
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  k6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: grafana/setup-k6-action@v1
+      - run: npm run smoke
+      - run: npm run load
+      - run: npm run spike
+      - run: npm run prove-gate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: k6-results
+          path: results/

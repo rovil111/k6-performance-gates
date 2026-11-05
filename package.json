@@ -1,0 +1,15 @@
+{
+  "name": "k6-performance-gates",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "k6 load tests with SLO thresholds that fail the build, and a check that proves the gate can fail.",
+  "license": "MIT",
+  "scripts": {
+    "server": "node server/server.js",
+    "smoke": "node scripts/run.mjs smoke",
+    "load": "node scripts/run.mjs load",
+    "spike": "node scripts/run.mjs spike",
+    "prove-gate": "node scripts/prove-gate.mjs"
+  }
+}
